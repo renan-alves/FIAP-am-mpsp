@@ -1,5 +1,7 @@
 package br.com.fiap.model;
 
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,13 +24,16 @@ public class ChamadoModel {
 	private String statusChamado;
 	private int idPromotorChamado;
 	private Integer notaChamado;
+	private Timestamp dataCriacao;
+	private Timestamp dataResposta;
 	private UsuarioModel usuario;
 
 	public ChamadoModel() {
 	}
 
 	public ChamadoModel(long idChamado, long protocoloChamado, String tituloChamado, String descricaoChamado,
-			String statusChamado, int idPromotorChamado, Integer notaChamado, UsuarioModel usuario) {
+			String statusChamado, int idPromotorChamado, Integer notaChamado, Timestamp dataCriacao, Timestamp dataResposta,
+			UsuarioModel usuario) {
 		this.idChamado = idChamado;
 		this.protocoloChamado = protocoloChamado;
 		this.tituloChamado = tituloChamado;
@@ -36,6 +41,8 @@ public class ChamadoModel {
 		this.statusChamado = statusChamado;
 		this.idPromotorChamado = idPromotorChamado;
 		this.notaChamado = notaChamado;
+		this.dataCriacao = dataCriacao;
+		this.dataResposta = dataResposta;
 		this.usuario = usuario;
 	}
 
@@ -125,6 +132,24 @@ public class ChamadoModel {
 		this.notaChamado = notaChamado;
 	}
 	
+	@Column(name = "DataCriacao")
+	public Timestamp getDataCriacao() {
+		return dataCriacao;
+	}
+
+	public void setDataCriacao(Timestamp dataCriacao) {
+		this.dataCriacao = dataCriacao;
+	}
+
+	@Column(name = "DataResposta")
+	public Timestamp getDataResposta() {
+		return dataResposta;
+	}
+
+	public void setDataResposta(Timestamp dataResposta) {
+		this.dataResposta = dataResposta;
+	}
+
 	@ManyToOne()
 	@JoinColumn(name = "IdUsuario", nullable = false)
 	public UsuarioModel getUsuario() {
