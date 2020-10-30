@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,15 +13,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.fiap.model.ChamadoModel;
-import br.com.fiap.model.ChartModel;
 import br.com.fiap.repository.ChamadoRepository;
 import io.swagger.annotations.ApiOperation;
 
@@ -66,7 +68,24 @@ public class ChamadoController {
 		model.addAttribute("quantidadeAberto", repository.countByStatusChamado("aberto"));
 		model.addAttribute("quantidadeAguardando", repository.countByStatusChamado("aguardando"));
 		model.addAttribute("quantidadeFechado", repository.countByStatusChamado("fechado"));
-		return status;
+		return "listas-chamados/"+status;
+	}
+	
+	@GetMapping("/{pagina}/{protocolo}")
+	public String showDetails(@PathVariable("pagina") String pagina, @PathVariable("protocolo") long protocolo, 
+			Model model, RedirectAttributes redirectAttributes, HttpServletRequest request) {
+		
+		ChamadoModel chamado = repository.findByProtocoloChamado(protocolo);
+		
+		if(chamado == null) {
+			redirectAttributes.addFlashAttribute("messages", "Chamado não encontrado!");
+			if(pagina.equals("home")) return "redirect:/chamado";
+			
+			return "redirect:/chamado/lista?status="+pagina;
+		}
+
+		model.addAttribute("chamado", chamado);
+		return "mock-detalhes/detalhes-"+chamado.getStatusChamado();
 	}
 
 	@PostMapping()

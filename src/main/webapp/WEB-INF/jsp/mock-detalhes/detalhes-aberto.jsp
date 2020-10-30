@@ -51,25 +51,13 @@
 				<nav aria-label="breadcrumb">
 					<ol class="breadcrumb mt-3">
 				    	<li class="breadcrumb-item"><a href="${contextPath}/chamado">Chamados</a></li>
-				    	<li class="breadcrumb-item active" aria-current="page">Abertos</li>
+				    	<li class="breadcrumb-item">Detalhes</li>
+				    	<li class="breadcrumb-item active" aria-current="page">${chamado.protocoloChamado}</li>
 					</ol>
 				</nav>
 				<div class="container-fluid" style="margin-top: 1em;">
 					<div class="row">
-						<c:forEach items="${listaChamados}" var="item">
-							<div class="col-5 m-auto">
-								<div class="card text-center mb-3">
-									<div class="card-header">Protocolo no
-										#${item.protocoloChamado}</div>
-									<div class="card-body">
-										<h5 class="card-title">${item.tituloChamado}</h5>
-										<p class="card-text">${item.descricaoChamado}</p>
-										<a href="#" class="btn btn-primary">Visualizar</a>
-									</div>
-									<div class="card-footer text-muted">2 days ago</div>
-								</div>
-							</div>
-						</c:forEach>
+						
 					</div>
 				</div>
 			</main>

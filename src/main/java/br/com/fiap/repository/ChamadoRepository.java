@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.fiap.model.ChamadoModel;
-import br.com.fiap.model.ChartModel;
 
 @Repository
 public interface ChamadoRepository extends JpaRepository<ChamadoModel, Long>{
@@ -29,4 +28,6 @@ public interface ChamadoRepository extends JpaRepository<ChamadoModel, Long>{
 		       "count(case when status_chamado = 'fechado' then 1 end) as \"fechados\" from tb_chamado " +
 		       "group by TO_CHAR(data_criacao, 'dd/mm/yyyy') order by TO_CHAR(data_criacao, 'dd/mm/yyyy') desc", nativeQuery = true)
 	List<Object> findChartData();
+
+	ChamadoModel findByProtocoloChamado(long protocolo);
 }
