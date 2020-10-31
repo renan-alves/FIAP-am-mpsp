@@ -77,7 +77,7 @@ public class ChamadoModel {
 		this.idChamado = idChamado;
 	}
 
-	@Column(name = "ProtocoloChamado")
+	@Column(name = "ProtocoloChamado", unique = true)
 	@NotNull(message = "Protocolo obrigatório")
 	public long getProtocoloChamado() {
 		return protocoloChamado;

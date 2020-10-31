@@ -79,7 +79,7 @@ input[type=number] {
 									<div class="card-body">
 										<h5 class="card-title">${item.tituloChamado}</h5>
 										<p class="card-text">${item.descricaoChamado}</p>
-										<a href="${contextPath}/chamado/${item.protocoloChamado}" class="btn btn-primary">Visualizar</a>
+										<a href="${contextPath}/chamado/aberto/${item.protocoloChamado}" class="btn btn-primary">Visualizar</a>
 									</div>
 									<div class="card-footer text-muted">Aberto dia ${item.dataCriacao}</div>
 								</div>
