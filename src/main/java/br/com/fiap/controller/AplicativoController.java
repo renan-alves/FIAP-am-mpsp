@@ -1,6 +1,9 @@
 package br.com.fiap.controller;
 
 import java.net.URI;
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -61,15 +64,26 @@ public class AplicativoController {
 
 	}
 	
-	@PutMapping()
+	@PutMapping("/fechamento")
 	@ApiOperation(value = "Finaliza um chamado aberto")
-	public ResponseEntity<Object> updateStatusChamado(@RequestBody ChamadoModel chamado) {
+	public ResponseEntity<Object> updateFechaChamado(@RequestBody long protocoloChamado) {
 		
-		chamado.setNotaChamado(chamado.getNotaChamado());
-		chamado.setDataResposta(chamado.getDataResposta());
-		chamado.setStatusChamado(chamado.getStatusChamado());
-		chamado.setProtocoloChamado(chamado.getProtocoloChamado());
-		repository.updateStatusChamado(chamado.getNotaChamado(), chamado.getStatusChamado(), chamado.getProtocoloChamado());
+		ChamadoModel chamado = repository.findByProtocoloChamado(protocoloChamado);
+		chamado.setDataResposta(Timestamp.from(Instant.now()));
+		chamado.setStatusChamado("fechado");
+		
+		repository.updateStatusChamado(chamado.getStatusChamado(), chamado.getDataResposta(), chamado.getProtocoloChamado());
+
+		return ResponseEntity.ok().build();
+	}
+	
+	@PutMapping("/avaliacao")
+	@ApiOperation(value = "Atualiza avaliacao")
+	public ResponseEntity<Object> updateAvaliacaoChamado(@RequestBody long protocoloChamado, int avaliacao) {
+		ChamadoModel chamado = repository.findByProtocoloChamado(protocoloChamado);
+		chamado.setNotaChamado(avaliacao);
+		
+		repository.updateNotaChamado(chamado.getNotaChamado(), chamado.getProtocoloChamado());
 
 		return ResponseEntity.ok().build();
 	}
