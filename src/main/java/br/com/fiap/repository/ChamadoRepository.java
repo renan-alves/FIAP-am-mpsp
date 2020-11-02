@@ -1,5 +1,6 @@
 package br.com.fiap.repository;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,6 +18,18 @@ public interface ChamadoRepository extends JpaRepository<ChamadoModel, Long>{
 	@Modifying
 	@Query(value = "UPDATE tb_chamado SET nota_chamado = ?1, status_chamado = ?2 WHERE protocolo_Chamado = ?3", nativeQuery = true)
 	void updateStatusChamado(int notaChamado, String statusChamado, long protocoloChamado);
+	
+	
+	@Transactional
+	@Modifying
+	@Query(value = "UPDATE tb_chamado SET status_chamado = ?1 data_resposta = ?2 WHERE protocolo_Chamado = ?3", nativeQuery = true)
+	void updateStatusChamado(String statusChamado, Timestamp dataResposta, long protocoloChamado);
+	
+	
+	@Transactional
+	@Modifying
+	@Query(value = "UPDATE tb_chamado SET nota_chamado = ?1 WHERE protocolo_Chamado = ?2", nativeQuery = true)
+	void updateNotaChamado(int notaChamado, long protocoloChamado);
 	
 	List<ChamadoModel> findByStatusChamado(String chamado);
 	
