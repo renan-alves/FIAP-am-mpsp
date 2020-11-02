@@ -18,6 +18,17 @@
 <c:set value="${pageContext.request.contextPath}" var="contextPath" />
 
 <style type="text/css">
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 .msg_history {
   height: 516px;
   overflow-y: auto;
@@ -146,22 +157,49 @@ img{ max-width:100%;}
 							<div class="outgoing_msg">
 				              <div class="sent_msg">
 				                <p>Em razão da pandemia do Coronavírus e da Resolução nº 1.198, de 20 de março de 2020, a Ouvidoria do Ministério Público de São Paulo receberá reclamações, denúncias, críticas, apreciações, comentários, elogios, pedido de informação e sugestões de qualquer interessado EXCLUSIVAMENTE pelo formulário.</p>
-				                <span class="time_date"> 18:34 | Quinta-feira 29/10</span> </div>
+				                <span class="time_date"> 18:34 | Quinta-feira 29/10</span> 
+				              </div>
 				            </div>
-				            <div class="incoming_msg">
-				              <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-				              <div class="received_msg">
-				                <div class="received_withd_msg">
-				                  <p>Boa tarde! Quero informar que abriu um buraco na av. Principal</p>
-				                  <span class="time_date"> 18:35 | Quinta-feira 29/10</span></div>
+				            <div class="outgoing_msg">
+				              <div class="sent_msg">  
+				                <p>Boa noite! Sou Gabriel, atendente do Ministério Público de São Paulo, como posso te ajudar?</p>
+				                <span class="time_date"> 18:34 | Quinta-feira 29/10</span> 
 				              </div>
 				            </div>
 				            <div class="incoming_msg">
 				              <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+					              <div class="received_msg">
+					                <div class="received_withd_msg">
+					                  <p>Olá, sou da Lapa e gostaria do e-mail do Promotor de Justiça desta região</p>
+					                  <span class="time_date"> 18:35 | Quinta-feira 29/10</span>
+					                </div>
+					              </div>
+				            </div>
+				            <div class="outgoing_msg">
+				              <div class="sent_msg">
+				                <p>Tudo bem! Vou verificar</p>
+				                <span class="time_date"> 18:36 | Quinta-feira 29/10</span> 
+				              </div>
+				            </div>
+				            <div class="outgoing_msg">
+					            <div class="sent_msg">    
+					                <p>carloshorta@mpsp.mp.br</p>
+					                <span class="time_date"> 18:36 | Quinta-feira 29/10</span> 
+					            </div>
+				            </div>
+				            <div class="incoming_msg">
+				              <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
 				              <div class="received_msg">
 				                <div class="received_withd_msg">
-				                  <p>O que pode ser feito? Temos previsão de quando esse buraco for fechado? Obrigado</p>
-				                  <span class="time_date"> 18:36 | Quinta-feira 29/10</span></div>
+				                  <p>Obrigado!</p>
+				                  <span class="time_date"> 18:36 | Quinta-feira 29/10</span>
+				                 </div>
+				              </div>
+				            </div>
+				            <div class="outgoing_msg" style="margin-bottom: 50px;">
+				              <div class="sent_msg">
+				                <p>Eu que agradeço, irei encerrar o chamado. Tenha uma boa noite!</p>
+				                <span class="time_date"> 18:37 | Quinta-feira 29/10</span> 
 				              </div>
 				            </div>
 				          <div class="type_msg">

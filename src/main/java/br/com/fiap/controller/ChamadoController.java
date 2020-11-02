@@ -77,6 +77,6 @@ public class ChamadoController {
 		}
 
 		model.addAttribute("chamado", chamado);
-		return "mock-detalhes/detalhes-"+chamado.getStatusChamado();
+		return "mock-detalhes/detalhes";
 	}
 }
