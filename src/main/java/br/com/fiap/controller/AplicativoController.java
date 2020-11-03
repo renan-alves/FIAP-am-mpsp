@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -51,6 +52,7 @@ public class AplicativoController {
 	@PostMapping()
 	@ApiOperation(value = "Cadastra um novo chamado")
 	public ResponseEntity<Object> save(@RequestBody @Valid ChamadoModel chamadoModel) {
+		chamadoModel.setDataCriacao(Timestamp.from(Instant.now()));
 		ChamadoModel chamado = repository.save(chamadoModel);
 		
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
@@ -66,9 +68,9 @@ public class AplicativoController {
 	
 	@PutMapping("/fechamento")
 	@ApiOperation(value = "Finaliza um chamado aberto")
-	public ResponseEntity<Object> updateFechaChamado(@RequestBody long protocoloChamado) {
+	public ResponseEntity<Object> updateFechaChamado(@RequestBody Map<String, Long> protocoloChamado) {
 		
-		ChamadoModel chamado = repository.findByProtocoloChamado(protocoloChamado);
+		ChamadoModel chamado = repository.findByProtocoloChamado(protocoloChamado.get("protocoloChamado"));
 		chamado.setDataResposta(Timestamp.from(Instant.now()));
 		chamado.setStatusChamado("fechado");
 		
@@ -79,9 +81,9 @@ public class AplicativoController {
 	
 	@PutMapping("/avaliacao")
 	@ApiOperation(value = "Atualiza avaliacao")
-	public ResponseEntity<Object> updateAvaliacaoChamado(@RequestBody long protocoloChamado, int avaliacao) {
-		ChamadoModel chamado = repository.findByProtocoloChamado(protocoloChamado);
-		chamado.setNotaChamado(avaliacao);
+	public ResponseEntity<Object> updateAvaliacaoChamado(@RequestBody Map<String, Long> json) {
+		ChamadoModel chamado = repository.findByProtocoloChamado(json.get("protocoloChamado"));
+		chamado.setNotaChamado(json.get("notaChamado").intValue());
 		
 		repository.updateNotaChamado(chamado.getNotaChamado(), chamado.getProtocoloChamado());
 

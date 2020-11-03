@@ -22,7 +22,7 @@ public interface ChamadoRepository extends JpaRepository<ChamadoModel, Long>{
 	
 	@Transactional
 	@Modifying
-	@Query(value = "UPDATE tb_chamado SET status_chamado = ?1 data_resposta = ?2 WHERE protocolo_Chamado = ?3", nativeQuery = true)
+	@Query(value = "UPDATE tb_chamado SET status_chamado = ?1, data_resposta = ?2 WHERE protocolo_Chamado = ?3", nativeQuery = true)
 	void updateStatusChamado(String statusChamado, Timestamp dataResposta, long protocoloChamado);
 	
 	
@@ -42,5 +42,5 @@ public interface ChamadoRepository extends JpaRepository<ChamadoModel, Long>{
 		       "group by TO_CHAR(data_criacao, 'dd/mm/yyyy') order by TO_CHAR(data_criacao, 'dd/mm/yyyy') desc", nativeQuery = true)
 	List<Object> findChartData();
 
-	ChamadoModel findByProtocoloChamado(long protocolo);
+	ChamadoModel findByProtocoloChamado(Long protocolo);
 }
